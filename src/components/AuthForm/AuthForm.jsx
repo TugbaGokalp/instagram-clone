@@ -8,9 +8,11 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -18,8 +20,13 @@ const AuthForm = () => {
   });
 
   const handleAuth = () => {
-    console.log("inputs", inputs);
+    if (!inputs.email || !inputs.password) {
+      alert("Please fill all the fields");
+      return;
+    }
+    navigate("/");
   };
+
   return (
     <>
       <Box border={"1px solid gray"} borderRadius={4} padding={5}>
