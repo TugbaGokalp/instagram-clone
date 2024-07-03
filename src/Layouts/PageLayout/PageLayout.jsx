@@ -2,12 +2,12 @@ import { Box, Flex } from "@chakra-ui/react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { useLocation } from "react-router-dom";
 
-const PageLayout = (children) => {
-  const { pathName } = useLocation();
+const PageLayout = ({ children }) => {
+  const { pathname } = useLocation();
   return (
     <Flex>
       {/* sidebar on the left */}
-      {pathName !== "/auth" ? (
+      {pathname !== "/auth" ? (
         <Box w={{ base: "70px", md: "240px" }}>
           <Sidebar />
         </Box>
