@@ -40,7 +40,13 @@ const Sidebar = () => {
       left={0}
       px={{ base: 2, md: 4 }}
     >
-      <Flex direction={"column"} gap={10} w="full" height={"full"}>
+      <Flex
+        direction={"column"}
+        gap={10}
+        w="full"
+        height={"full"}
+        alignItems={{ base: "center", md: "flex-start" }}
+      >
         <Link
           to={"/"}
           as={RouterLink}
@@ -64,7 +70,12 @@ const Sidebar = () => {
         >
           <InstagramMobileLogo />
         </Link>
-        <Flex direction={"column"} gap={5} cursor={"pointer"}>
+        <Flex
+          direction={"column"}
+          gap={5}
+          cursor={"pointer"}
+          alignItems={{ base: "center", md: "flex-start" }}
+        >
           {sidebarItems.map((item, index) => (
             <Tooltip
               key={index}
@@ -77,13 +88,15 @@ const Sidebar = () => {
             >
               <Link
                 display={"flex"}
+                to={item.link || null}
                 as={RouterLink}
                 alignItems={"center"}
                 gap={4}
                 _hover={{ bg: "whiteAlpha.400" }}
                 borderRadius={6}
                 p={2}
-                w={10}
+                w={{ base: 10, md: "full" }}
+                justifyContent={{ base: "center", md: "flex-start" }}
               >
                 {item.icon}
                 <Box display={{ base: "none", md: "block" }}>{item.text}</Box>
