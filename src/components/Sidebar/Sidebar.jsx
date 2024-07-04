@@ -8,6 +8,7 @@ import {
   SearchLogo,
 } from "../../assets/constants";
 import { AiFillHome } from "react-icons/ai";
+import { BiLogOut } from "react-icons/bi";
 
 const Sidebar = () => {
   const sidebarItems = [
@@ -104,6 +105,31 @@ const Sidebar = () => {
             </Tooltip>
           ))}
         </Flex>
+        <Tooltip
+          hasArrow
+          label={"Log out"}
+          placement="left"
+          ml={1}
+          openDelay={500}
+          display={{ base: "block", md: "none" }}
+        >
+          <Link
+            display={"flex"}
+            as={RouterLink}
+            to={"/auth"}
+            alignItems={"center"}
+            gap={4}
+            _hover={{ bg: "whiteAlpha.400" }}
+            borderRadius={6}
+            p={2}
+            w={{ base: 10, md: "full" }}
+            justifyContent={{ base: "center", md: "flex-start" }}
+            mt={"auto"}
+          >
+            <BiLogOut size={25} />
+            <Box display={{ base: "none", md: "block" }}>Log out</Box>
+          </Link>
+        </Tooltip>
       </Flex>
     </Box>
   );
