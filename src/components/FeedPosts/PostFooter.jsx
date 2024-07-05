@@ -14,7 +14,7 @@ import {
 } from "../../assets/constants";
 import { useState } from "react";
 
-const PostFooter = () => {
+const PostFooter = ({ username }) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(1000);
 
@@ -41,7 +41,7 @@ const PostFooter = () => {
         {likes} likes
       </Text>
       <Text fontSize="sm" fontWeight={700} gap={2} display={"flex"}>
-        Tugba Gokalp
+        {username}
         <Text as="span" fontWeight={400}>
           Feeling Good
         </Text>
