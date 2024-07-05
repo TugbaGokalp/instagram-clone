@@ -1,4 +1,12 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Text,
+} from "@chakra-ui/react";
 import {
   CommentLogo,
   NotificationsLogo,
@@ -20,7 +28,7 @@ const PostFooter = () => {
     }
   };
   return (
-    <>
+    <Box mb={10}>
       <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={2}>
         <Box onClick={handleClick} cursor={"pointer"} fontSize={18}>
           {!liked ? <NotificationsLogo /> : <UnlikeLogo />}
@@ -32,7 +40,7 @@ const PostFooter = () => {
       <Text fontWeight={600} fontSize={"sm"}>
         {likes} likes
       </Text>
-      <Text fontSize="sm" fontWeight={700}>
+      <Text fontSize="sm" fontWeight={700} gap={2} display={"flex"}>
         Tugba Gokalp
         <Text as="span" fontWeight={400}>
           Feeling Good
@@ -41,7 +49,33 @@ const PostFooter = () => {
       <Text fontSize="sm" color={"gray"}>
         view all 1,000 comments
       </Text>
-    </>
+      <Flex
+        alignItems={"center"}
+        gap={2}
+        justifyContent={"space-between"}
+        w={"full"}
+      >
+        <InputGroup>
+          <Input
+            variant={"flushed"}
+            placeholder={"Add a comment..."}
+            fontSize={14}
+          />
+          <InputRightElement>
+            <Button
+              fontSize={14}
+              color={"blue.500"}
+              fontWeight={600}
+              _hover={{ color: "white" }}
+              bg={"transparent"}
+              cursor={"pointer"}
+            >
+              Post
+            </Button>
+          </InputRightElement>
+        </InputGroup>
+      </Flex>
+    </Box>
   );
 };
 
