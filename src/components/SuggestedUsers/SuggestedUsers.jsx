@@ -1,5 +1,6 @@
-import { Flex, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Text, VStack } from "@chakra-ui/react";
 import SuggestedHeader from "./SuggestedHeader";
+import SuggestedUser from "./SuggestedUser";
 
 const SuggestedUsers = () => {
   return (
@@ -19,6 +20,13 @@ const SuggestedUsers = () => {
           See all
         </Text>
       </Flex>
+      <SuggestedUser />
+      <SuggestedUser />
+      <SuggestedUser />
+
+      <Box fontSize={12} color={"gray.500"} mt={5} alignSelf={"start"}>
+        © 2024 Built by Tugba Gokalp
+      </Box>
     </VStack>
   );
 };
