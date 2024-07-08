@@ -20,9 +20,21 @@ const SuggestedUsers = () => {
           See all
         </Text>
       </Flex>
-      <SuggestedUser />
-      <SuggestedUser />
-      <SuggestedUser />
+      <SuggestedUser
+        name="Dan Abramov"
+        followers={1392}
+        avatar="https://bit.ly/dan-abramov"
+      />
+      <SuggestedUser
+        name="ryan Florance"
+        followers={567}
+        avatar="https://bit.ly/ryan-florance"
+      />
+      <SuggestedUser
+        name="Christian Nwamba"
+        followers={759}
+        avatar="https://bit.ly/code-beast"
+      />
 
       <Box fontSize={12} color={"gray.500"} mt={5} alignSelf={"start"}>
         © 2024 Built by Tugba Gokalp
