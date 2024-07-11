@@ -17,6 +17,7 @@ import {
 import { AiFillHeart } from "react-icons/ai";
 import { FaComment } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import Comment from "../Comment/Comment";
 
 const ProfilePost = ({ img }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -126,12 +127,6 @@ const ProfilePost = ({ img }) => {
                   maxH={"350px"}
                   overflowY={"auto"}
                 >
-                  {/* <Comment
-                    createdAt="1d ago"
-                    username="tugba_gokalp"
-                    profilePic="/profilepic.png"
-                    text={"Dummy images from unsplash"}
-                  />
                   <Comment
                     createdAt="1d ago"
                     username="tugba_gokalp"
@@ -143,7 +138,13 @@ const ProfilePost = ({ img }) => {
                     username="tugba_gokalp"
                     profilePic="/profilepic.png"
                     text={"Dummy images from unsplash"}
-                  /> */}
+                  />
+                  <Comment
+                    createdAt="1d ago"
+                    username="tugba_gokalp"
+                    profilePic="/profilepic.png"
+                    text={"Dummy images from unsplash"}
+                  />
                 </VStack>
               </Flex>
             </Flex>
