@@ -1,20 +1,10 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Image,
-  Input,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
+import Login from "./Login";
+import Signup from "./Signup";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-  });
 
   return (
     <>
@@ -27,23 +17,7 @@ const AuthForm = () => {
             alt="Instagram-logo"
           />
 
-          {!isLogin ? (
-            <Input
-              placeholder="Confirm Password"
-              fontSize={14}
-              type="password"
-              value={inputs.confirmPassword}
-              onChange={(e) =>
-                setInputs({
-                  ...inputs,
-                  confirmPasswordpassword: e.target.value,
-                })
-              }
-            />
-          ) : null}
-          <Button w={"full"} colorScheme="blue" size={"sm"} fontSize={14}>
-            {isLogin ? "Log in" : "Sign in"}
-          </Button>
+          {isLogin ? <Login /> : <Signup />}
 
           {/* OR TEXT */}
           <Flex
