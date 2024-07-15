@@ -1,5 +1,4 @@
-import { Avatar, Flex, Text, Link } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
+import { Avatar, Flex, Text, Button } from "@chakra-ui/react";
 
 const SuggestedHeader = () => {
   return (
@@ -10,17 +9,17 @@ const SuggestedHeader = () => {
           tugbagokalp
         </Text>
       </Flex>
-      <Link
-        as={RouterLink}
-        to={"/auth"}
+      <Button
+        size={"xs"}
+        background={"transparent"}
+        _hover={{ background: "transparent" }}
         fontSize={14}
         fontWeight={"medium"}
         color={"blue.400"}
-        style={{ textDecoration: "none" }}
         cursor="pointer"
       >
         Log out
-      </Link>
+      </Button>
     </Flex>
   );
 };
