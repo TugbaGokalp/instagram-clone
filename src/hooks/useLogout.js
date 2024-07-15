@@ -4,7 +4,7 @@ import useShowToast from "./useShowToast";
 import useAuthStore from "../store/authStore";
 
 const useLogout = () => {
-  const { signOut, isLoggingOut, error } = useSignOut(auth);
+  const [signOut, isLoggingOut, error] = useSignOut(auth);
 
   const showToast = useShowToast();
   const logoutUser = useAuthStore((state) => state.logout);

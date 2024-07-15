@@ -1,6 +1,9 @@
 import { Avatar, Flex, Text, Button } from "@chakra-ui/react";
+import useLogout from "../../hooks/useLogout";
 
 const SuggestedHeader = () => {
+  const { handleLogout, isLogginOut } = useLogout();
+
   return (
     <Flex justifyContent={"space-between"} alignItems={"center"} w={"full"}>
       <Flex alignItems={"center"} gap={2}>
@@ -17,6 +20,8 @@ const SuggestedHeader = () => {
         fontWeight={"medium"}
         color={"blue.400"}
         cursor="pointer"
+        isLoading={isLogginOut}
+        onClick={handleLogout}
       >
         Log out
       </Button>
