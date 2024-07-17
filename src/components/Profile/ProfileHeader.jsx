@@ -6,8 +6,10 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import useUserProfileStore from "../../store/userProfileStore";
 
 const ProfileHeader = () => {
+  const { userProfile } = useUserProfileStore();
   return (
     <Flex
       gap={{ base: 4, sm: 10 }}
@@ -35,7 +37,9 @@ const ProfileHeader = () => {
           alignItems={"center"}
           w={"full"}
         >
-          <Text fontSize={{ base: "md", sm: "lg" }}>tugbagokalp</Text>
+          <Text fontSize={{ base: "md", sm: "lg" }}>
+            {userProfile.username}
+          </Text>
           <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
             <Button
               bg={"white"}
@@ -51,19 +55,19 @@ const ProfileHeader = () => {
         <Flex alignItems={"center"} gap={{ base: 2, sm: 4 }}>
           <Text fontSize={{ base: "xs", md: "sm" }}>
             <Text as={"span"} fontWeight={"bold"} mr={1}>
-              4
+              {userProfile.posts.length}
             </Text>
             Posts
           </Text>
           <Text fontSize={{ base: "xs", md: "sm" }}>
             <Text as={"span"} fontWeight={"bold"} mr={1}>
-              149
+              {userProfile.followers.length}
             </Text>
             Followers
           </Text>
           <Text fontSize={{ base: "xs", md: "sm" }}>
             <Text as={"span"} fontWeight={"bold"} mr={1}>
-              175
+              {userProfile.following.length}
             </Text>
             Following
           </Text>
@@ -71,10 +75,10 @@ const ProfileHeader = () => {
 
         <Flex alignItems={"center"} gap={4}>
           <Text fontSize={"sm"} fontWeight={"bold"}>
-            Tuğba Gökalp
+            {userProfile.fullName}
           </Text>
         </Flex>
-        <Text fontSize={"sm"}>A Frontend Developer</Text>
+        <Text fontSize={"sm"}>{userProfile.bio}</Text>
       </VStack>
     </Flex>
   );
