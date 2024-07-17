@@ -1,9 +1,25 @@
-import { Container, Flex } from "@chakra-ui/react";
+import {
+  Container,
+  Flex,
+  Link,
+  Skeleton,
+  SkeletonCircle,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
 import ProfileTabs from "../../components/Profile/ProfileTabs";
 import ProfilePosts from "../../components/Profile/ProfilePosts";
+import useGetUserProfileByUsername from "../../hooks/useGetUserProfileByUsername";
+import { useParams } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 const ProfilePage = () => {
+  const { username } = useParams();
+  const { isLoading, userProfile } = useGetUserProfileByUsername(username);
+
+  const userNotFound = !isLoading && !userProfile;
+  if (userNotFound) return <UserNotFound />;
   return (
     <Container maxW="container.lg" py={5}>
       <Flex
@@ -14,7 +30,7 @@ const ProfilePage = () => {
         mx={"auto"}
         flexDirection={"column"}
       >
-        <ProfileHeader />
+        {!isLoading && userProfile && <ProfileHeader />}
       </Flex>
       <Flex
         px={{ base: 2, sm: 4 }}
@@ -32,3 +48,20 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
+const UserNotFound = () => {
+  return (
+    <Flex flexDir="column" textAlign={"center"} mx={"auto"}>
+      <Text fontSize={"2xl"}>User Not Found</Text>
+      <Link
+        as={RouterLink}
+        to={"/"}
+        color={"blue.500"}
+        w={"max-content"}
+        mx={"auto"}
+      >
+        Go home
+      </Link>
+    </Flex>
+  );
+};
