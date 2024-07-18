@@ -7,8 +7,8 @@ const usePreviewImage = () => {
   const maxFileSizeInBytes = 2 * 1024 * 1024;
 
   const handleImageChange = (e) => {
-    const file = e.target.file[0];
-    if (file && file.type.startsWith("/image")) {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith("image/")) {
       if (file.size > maxFileSizeInBytes) {
         showToast("Error", "File size must be less than 2MB", "error");
         setSelectedFile(null);
@@ -20,7 +20,7 @@ const usePreviewImage = () => {
       reader.onloadend = () => {
         setSelectedFile(reader.result);
       };
-      reader.readAsDataURL(reader.result);
+      reader.readAsDataURL(file);
     } else {
       showToast("Error", "Please select an image file", "error");
       setSelectedFile(null);

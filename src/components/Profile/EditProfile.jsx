@@ -28,8 +28,7 @@ const EditProfile = ({ isOpen, onClose }) => {
 
   const authUser = useAuthStore((state) => state.user);
   const fileRef = useRef(null);
-  const { selectedFile, handleImageChange, setSelectedFile } =
-    usePreviewImage();
+  const { selectedFile, handleImageChange } = usePreviewImage();
 
   const handleEditProfile = () => {
     console.log(inputs);
@@ -79,7 +78,7 @@ const EditProfile = ({ isOpen, onClose }) => {
                       type="file"
                       hidden
                       ref={fileRef}
-                      onClick={handleImageChange}
+                      onChange={handleImageChange}
                     />
                   </Stack>
                 </FormControl>
