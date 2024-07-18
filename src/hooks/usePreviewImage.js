@@ -14,11 +14,20 @@ const usePreviewImage = () => {
         setSelectedFile(null);
         return;
       }
+
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setSelectedFile(reader.result);
+      };
+      reader.readAsDataURL(reader.result);
     } else {
       showToast("Error", "Please select an image file", "error");
       setSelectedFile(null);
     }
   };
+
+  return { selectedFile, handleImageChange, setSelectedFile };
 };
 
 export default usePreviewImage;
