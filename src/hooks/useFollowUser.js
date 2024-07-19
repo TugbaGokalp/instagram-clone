@@ -20,6 +20,37 @@ const useFollowUser = (userId) => {
       await updateDoc(currentUserRef, {
         following: isFollowing ? arrayRemove(userId) : arrayUnion(userId),
       });
+
+      await updateDoc(userToFollowOrUnfollorRef, {
+        followers: isFollowing
+          ? arrayRemove(authUser.uid)
+          : arrayUnion(authUser.uid),
+      });
+
+      if (isFollowing) {
+        // unfollow
+
+        setAuthUser({
+          ...authUser,
+          following: authUser.following.filter((uid) => uid !== userId),
+        });
+        setUserProfile({
+          ...userProfile,
+          followers: authUser.following.filter((uid) => uid !== authUser.uid),
+        });
+
+        localStorage.setItem(
+          "user-info",
+          JSON.stringify({
+            ...authUser,
+            following: authUser.following.filter((uid) => uid !== userId),
+          })
+        );
+
+        setIsFollowing(false);
+      } else {
+        // follow
+      }
     } catch (error) {
       showToast("Error", error.message, "error");
     } finally {
