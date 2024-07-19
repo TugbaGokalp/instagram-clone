@@ -40,10 +40,13 @@ const useEditProfile = () => {
       localStorage.setItem("user-info", JSON.stringify(updatedUser));
       setAuthUser(updatedUser);
       setUserProfile(updatedUser);
+      showToast("Success", "Profile updated successfully", "success");
     } catch (error) {
       showToast("Error", error.message, "error");
     }
   };
+
+  return { editProfile, isUpdating };
 };
 
 export default useEditProfile;
