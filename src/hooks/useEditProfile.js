@@ -3,14 +3,14 @@ import useAuthStore from "../store/authStore";
 import useUserProfileStore from "../store/userProfileStore";
 import useShowToast from "./useShowToast";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
-import { firestore, storage } from "../firebase/storage";
+import { firestore, storage } from "../firebase/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 
 const useEditProfile = () => {
   const [isUpdating, setIsUpdating] = useState(false);
   const authUser = useAuthStore((state) => state.user);
   const setAuthUser = useAuthStore((state) => state.setUser);
-  const setUserProfile = useUserProfileStore((state) => state.user);
+  const setUserProfile = useUserProfileStore((state) => state.setUserProfile);
   const showToast = useShowToast();
 
   const editProfile = async (inputs, selectedFile) => {
