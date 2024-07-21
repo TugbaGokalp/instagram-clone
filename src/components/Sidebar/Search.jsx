@@ -16,14 +16,19 @@ import {
 } from "@chakra-ui/react";
 import { SearchLogo } from "../../assets/constants";
 import useSearchUser from "../../hooks/useSearchUser";
+import { useRef } from "react";
 
 const Search = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const searchRef = useRef(null);
   const { isLoading, getUserProfile, user } = useSearchUser();
 
   const handleSearchUser = (e) => {
     e.preventDefault();
+    getUserProfile(searchRef.current.value);
   };
+
+  console.log(user);
   return (
     <>
       <Tooltip
@@ -57,7 +62,7 @@ const Search = () => {
           <ModalBody pb={6}>
             <form onSubmit={handleSearchUser}>
               <FormControl>
-                <FormLabel>User name</FormLabel>
+                <FormLabel>Username</FormLabel>
                 <Input placeholder="Search" ref={searchRef} />
               </FormControl>
               <Flex w={"full"} justifyContent={"flex-end"}>
