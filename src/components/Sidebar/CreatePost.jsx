@@ -20,6 +20,11 @@ import { CreatePostLogo } from "../../assets/constants";
 import { BsFillImageFill } from "react-icons/bs";
 import { useRef, useState } from "react";
 import usePreviewImg from "../../hooks/usePreviewImage";
+import useShowToast from "../../hooks/useShowToast";
+import useAuthStore from "../../store/authStore";
+import usePostStore from "../../store/postStore";
+import useUserProfileStore from "../../store/userProfileStore";
+import { useLocation } from "react-router-dom";
 
 const CreatePost = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -113,3 +118,26 @@ const CreatePost = () => {
 };
 
 export default CreatePost;
+
+function useCreatePost() {
+  const showToast = useShowToast();
+  const [isLoading, setIsLoading] = useState(false);
+  const authUser = useAuthStore((state) => state.user);
+  const createPost = usePostStore((state) => state.createPost);
+  const addPost = useUserProfileStore((state) => state.addPost);
+  const { pathname } = useLocation();
+
+  const handleCreatePost = async (selectedFile, caption) => {
+    if (!selectedFile) throw new Error("Please select an image");
+    setIsLoading(true);
+    const newPost = {
+      caption: caption,
+      likes: [],
+      comments: [],
+      createdAt: Date.now(),
+      createdBy: authUser.uid,
+    };
+  };
+
+  return { isLoading, handleCreatePost };
+}
