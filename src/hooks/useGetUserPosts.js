@@ -7,7 +7,7 @@ import { firestore } from "../firebase/firebase";
 
 const useGetUserPosts = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [posts, setPosts] = usePostStore();
+  const { posts, setPosts } = usePostStore();
   const showToast = useShowToast();
   const userProfile = useUserProfileStore((state) => state.userProfile);
 
