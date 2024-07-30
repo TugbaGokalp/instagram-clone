@@ -43,6 +43,17 @@ const CreatePost = () => {
   const { isLoading, handleCreatePost } = useCreatePost();
   const showToast = useShowToast();
 
+  const handlePostCreation = async () => {
+    try {
+      await handleCreatePost(selectedFile, caption);
+      onClose();
+      setCaption("");
+      setSelectedFile(null);
+    } catch (error) {
+      showToast("Error", error.messsage, "error");
+    }
+  };
+
   return (
     <>
       <Tooltip
@@ -120,7 +131,9 @@ const CreatePost = () => {
           </ModalBody>
 
           <ModalFooter>
-            <Button mr={3}>Post</Button>
+            <Button mr={3} onClick={handlePostCreation} isLoading={isLoading}>
+              Post
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
