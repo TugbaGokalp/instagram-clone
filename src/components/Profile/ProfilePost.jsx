@@ -19,9 +19,11 @@ import { FaComment } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Comment from "../Comment/Comment";
 import PostFooter from "../FeedPosts/PostFooter";
+import useUserProfileStore from "../../store/userProfileStore";
 
 const ProfilePost = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const userProfile = useUserProfileStore((state) => state.userProfile);
   return (
     <>
       <GridItem
@@ -51,14 +53,14 @@ const ProfilePost = ({ post }) => {
             <Flex>
               <AiFillHeart size={20} />
               <Text fontWeight={"bold"} ml={2}>
-                7
+                {post.likes.length}
               </Text>
             </Flex>
 
             <Flex>
               <FaComment size={20} />
               <Text fontWeight={"bold"} ml={2}>
-                7
+                {post.comments.length}
               </Text>
             </Flex>
           </Flex>
@@ -104,12 +106,12 @@ const ProfilePost = ({ post }) => {
                 <Flex alignItems={"center"} justifyContent={"space-between"}>
                   <Flex alignItems={"center"} gap={4}>
                     <Avatar
-                      src="/profilepic.png"
+                      src={userProfile.profilePicURL}
                       size={"sm"}
                       name="Tugba Gokalp"
                     />
                     <Text fontWeight={"bold"} fontSize={12}>
-                      Tugba Gokalp
+                      {userProfile.username}
                     </Text>
                   </Flex>
 
