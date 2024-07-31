@@ -87,16 +87,20 @@ const ProfilePost = ({ post }) => {
               gap={4}
               w={{ base: "90%", sm: "70%", md: "full" }}
               mx={"auto"}
+              maxH={"90vh"}
+              minH={"50vh"}
             >
-              <Box
+              <Flex
                 borderRadius={4}
                 overflow={"hidden"}
                 border={"1px solid"}
                 borderColor={"whiteAlpha.300"}
                 flex={1.5}
+                justifyContent={"center"}
+                alignItems={"center"}
               >
                 <Image src={post.imageURL} alt="profile post" />
-              </Box>
+              </Flex>
               <Flex
                 flex={1}
                 flexDir={"column"}
@@ -130,12 +134,6 @@ const ProfilePost = ({ post }) => {
                   maxH={"350px"}
                   overflowY={"auto"}
                 >
-                  <Comment
-                    createdAt="1d ago"
-                    username="tugba_gokalp"
-                    profilePic="/profilepic.png"
-                    text={"Dummy images from unsplash"}
-                  />
                   <Comment
                     createdAt="1d ago"
                     username="tugba_gokalp"
