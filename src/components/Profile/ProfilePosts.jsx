@@ -1,5 +1,6 @@
 import { Box, Flex, Grid, Skeleton, Text, VStack } from "@chakra-ui/react";
 import useGetUserPosts from "../../hooks/useGetUserPosts";
+import ProfilePost from "./ProfilePost";
 
 const ProfilePosts = () => {
   const { isLoading, posts } = useGetUserPosts();
@@ -24,7 +25,13 @@ const ProfilePosts = () => {
           </VStack>
         ))}
 
-      {!isLoading && <></>}
+      {!isLoading && (
+        <>
+          {posts.map((post) => (
+            <ProfilePost post={post} key={post.id} />
+          ))}
+        </>
+      )}
     </Grid>
   );
 };
