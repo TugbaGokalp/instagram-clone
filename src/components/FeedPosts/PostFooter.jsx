@@ -14,6 +14,7 @@ import {
 } from "../../assets/constants";
 import { useState } from "react";
 import usePostComment from "../../hooks/usePostComment";
+import useAuthStore from "../../store/authStore";
 
 const PostFooter = ({ post, username, isProfilePage }) => {
   const [liked, setLiked] = useState(false);
@@ -21,6 +22,7 @@ const PostFooter = ({ post, username, isProfilePage }) => {
   const [comment, setComment] = useState("");
 
   const { isCommenting, handlePostComment } = usePostComment();
+  const authUser = useAuthStore((state) => state.user);
 
   const handleSubmitComment = async () => {
     await handlePostComment(post.id, comment);
@@ -62,36 +64,38 @@ const PostFooter = ({ post, username, isProfilePage }) => {
           </Text>
         </>
       )}
-      <Flex
-        alignItems={"center"}
-        gap={2}
-        justifyContent={"space-between"}
-        w={"full"}
-      >
-        <InputGroup>
-          <Input
-            variant={"flushed"}
-            placeholder={"Add a comment..."}
-            fontSize={14}
-            onChange={(e) => setComment(e.target.value)}
-            value={comment}
-          />
-          <InputRightElement>
-            <Button
+      {authUser && (
+        <Flex
+          alignItems={"center"}
+          gap={2}
+          justifyContent={"space-between"}
+          w={"full"}
+        >
+          <InputGroup>
+            <Input
+              variant={"flushed"}
+              placeholder={"Add a comment..."}
               fontSize={14}
-              color={"blue.500"}
-              fontWeight={600}
-              _hover={{ color: "white" }}
-              bg={"transparent"}
-              cursor={"pointer"}
-              onClick={handleSubmitComment}
-              isLoading={isCommenting}
-            >
-              Post
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </Flex>
+              onChange={(e) => setComment(e.target.value)}
+              value={comment}
+            />
+            <InputRightElement>
+              <Button
+                fontSize={14}
+                color={"blue.500"}
+                fontWeight={600}
+                _hover={{ color: "white" }}
+                bg={"transparent"}
+                cursor={"pointer"}
+                onClick={handleSubmitComment}
+                isLoading={isCommenting}
+              >
+                Post
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </Flex>
+      )}
     </Box>
   );
 };
