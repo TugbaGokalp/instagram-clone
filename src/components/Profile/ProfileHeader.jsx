@@ -25,6 +25,8 @@ const ProfileHeader = () => {
   const visitingAnotherProfileAndAuth =
     authUser && authUser.username !== userProfile.username;
 
+  console.log("userProfile.posts.length", userProfile.posts.length);
+
   return (
     <Flex
       gap={{ base: 4, sm: 10 }}

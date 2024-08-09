@@ -13,12 +13,21 @@ import {
   UnlikeLogo,
 } from "../../assets/constants";
 import { useState } from "react";
+import usePostComment from "../../hooks/usePostComment";
 
-const PostFooter = ({ username, isProfilePage }) => {
+const PostFooter = ({ post, username, isProfilePage }) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(1000);
+  const [comment, setComment] = useState("");
 
-  const handleClick = () => {
+  const { isCommenting, handlePostComment } = usePostComment();
+
+  const handleSubmitComment = async () => {
+    await handlePostComment(post.id, comment);
+    setComment("");
+  };
+
+  const handleLike = () => {
     if (liked) {
       setLiked(false);
       setLikes(likes - 1);
@@ -30,7 +39,7 @@ const PostFooter = ({ username, isProfilePage }) => {
   return (
     <Box mb={10} marginTop={"auto"}>
       <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={2}>
-        <Box onClick={handleClick} cursor={"pointer"} fontSize={18}>
+        <Box onClick={handleLike} cursor={"pointer"} fontSize={18}>
           {!liked ? <NotificationsLogo /> : <UnlikeLogo />}
         </Box>
         <Box cursor={"pointer"} fontSize={18}>
@@ -64,6 +73,8 @@ const PostFooter = ({ username, isProfilePage }) => {
             variant={"flushed"}
             placeholder={"Add a comment..."}
             fontSize={14}
+            onChange={(e) => setComment(e.target.value)}
+            value={comment}
           />
           <InputRightElement>
             <Button
@@ -73,6 +84,8 @@ const PostFooter = ({ username, isProfilePage }) => {
               _hover={{ color: "white" }}
               bg={"transparent"}
               cursor={"pointer"}
+              onClick={handleSubmitComment}
+              isLoading={isCommenting}
             >
               Post
             </Button>
