@@ -11,7 +11,7 @@ import { auth } from "./firebase/firebase";
 function App() {
   // const authUser = useAuthStore((state) => state.user);
   const [authUser] = useAuthState(auth);
-  console.log("authUser", authUser);
+
   return (
     <>
       <PageLayout>
