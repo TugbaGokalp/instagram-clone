@@ -4,6 +4,7 @@ import {
   Flex,
   Skeleton,
   SkeletonCircle,
+  Text,
   VStack,
 } from "@chakra-ui/react";
 import FeedPost from "./FeedPost";
@@ -32,6 +33,16 @@ const FeedPosts = () => {
       {!isLoading &&
         posts.length > 0 &&
         posts.map((post) => <FeedPost key={posts.id} post={post} />)}
+      {!isLoading && posts.length === 0 && (
+        <>
+          <Text fontSize={"md"} color={"red.500"}>
+            Dayuum. Looks like you don&apos;t have any friends yet.
+          </Text>
+          <Text fontSize={"md"} color={"red.500"}>
+            Follow someone, please .
+          </Text>
+        </>
+      )}
     </Container>
   );
 };
