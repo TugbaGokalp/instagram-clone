@@ -16,7 +16,7 @@ import { useRef, useState } from "react";
 import usePostComment from "../../hooks/usePostComment";
 import useAuthStore from "../../store/authStore";
 import useLikePost from "../../hooks/useLikePost";
-import timeAgo from "../../utils/timeAgo";
+import { timeAgo } from "../../utils/timeAgo";
 
 const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
   const { isCommenting, handlePostComment } = usePostComment();
